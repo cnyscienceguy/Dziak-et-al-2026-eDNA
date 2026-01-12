@@ -1,0 +1,97 @@
+﻿sample,replicate,triplicate,type,depth,depth_cat,lat,long,lat_deg,lat_min,log_deg,log_min,day,month,year,volume_L,Comments
+MTeDNA_pool_04_1,MTeDNA_pool_04,yes,eDNA,0,01. Epipelagic (0-200m),NA,NA,NA,NA,NA,NA,10,June ,2020,1.5,hydrophone closP
+MTeDNA_pool_04_2,MTeDNA_pool_04,yes,eDNA,0,01. Epipelagic (0-200m),NA,NA,NA,NA,NA,NA,10,June ,2020,1.5,hydrophone closP
+MTeDNA_pool_04_3,MTeDNA_pool_04,yes,eDNA,0,01. Epipelagic (0-200m),NA,NA,NA,NA,NA,NA,10,June ,2020,1.5,hydrophone closP
+MTeDNA_S17_1,MTeDNA_S17,yes,eDNA,0,01. Epipelagic (0-200m),24.85316667,136.5188333,24,51.19,136,31.13,20,July,2020,1.5,hydrophone closP
+MTeDNA_S17_2,MTeDNA_S17,yes,eDNA,0,01. Epipelagic (0-200m),24.85316667,136.5188333,24,51.19,136,31.13,20,July,2020,1.5,hydrophone closP
+MTeDNA_S17_3,MTeDNA_S17,yes,eDNA,0,01. Epipelagic (0-200m),24.85316667,136.5188333,24,51.19,136,31.13,20,July,2020,1.5,hydrophone closP
+MTeDNA_S18_1,MTeDNA_S18,yes,eDNA,0,01. Epipelagic (0-200m),25.17466667,136.8145,25,10.48,136,48.87,18,July,2020,1.5,hydrophone closP
+MTeDNA_S18_2,MTeDNA_S18,yes,eDNA,0,01. Epipelagic (0-200m),25.17466667,136.8145,25,10.48,136,48.87,18,July,2020,1.5,hydrophone closP
+MTeDNA_S18_3,MTeDNA_S18,yes,eDNA,0,01. Epipelagic (0-200m),25.17466667,136.8145,25,10.48,136,48.87,18,July,2020,1.5,hydrophone closP
+MTeDNA_S19_1,MTeDNA_S19,yes,eDNA,0,01. Epipelagic (0-200m),25.08433333,136.6025,25,5.06,136,36.15,17,July,2020,1.5,hydrophone closP
+MTeDNA_S19_2,MTeDNA_S19,yes,eDNA,0,01. Epipelagic (0-200m),25.08433333,136.6025,25,5.06,136,36.15,17,July,2020,1.5,hydrophone closP
+MTeDNA_S19_3,MTeDNA_S19,yes,eDNA,0,01. Epipelagic (0-200m),25.08433333,136.6025,25,5.06,136,36.15,17,July,2020,1.5,hydrophone closP
+MTeDNA_S21_1,MTeDNA_S21,yes,eDNA,0,01. Epipelagic (0-200m),16.9245,147.9751667,16,55.47,147,58.51,4,July,2020,1.5,hydrophone closP
+MTeDNA_S21_2,MTeDNA_S21,yes,eDNA,0,01. Epipelagic (0-200m),16.9245,147.9751667,16,55.47,147,58.51,4,July,2020,1.5,hydrophone closP
+MTeDNA_S21_3,MTeDNA_S21,yes,eDNA,0,01. Epipelagic (0-200m),16.9245,147.9751667,16,55.47,147,58.51,4,July,2020,1.5,hydrophone closP
+MTeDNA_S22_1,MTeDNA_S22,yes,eDNA,0,01. Epipelagic (0-200m),19.17516667,147.5813333,19,10.51,147,34.88,3,July,2020,1.5,hydrophone closP
+MTeDNA_S22_2,MTeDNA_S22,yes,eDNA,0,01. Epipelagic (0-200m),19.17516667,147.5813333,19,10.51,147,34.88,3,July,2020,1.5,hydrophone closP
+MTeDNA_S22_3,MTeDNA_S22,yes,eDNA,0,01. Epipelagic (0-200m),19.17516667,147.5813333,19,10.51,147,34.88,3,July,2020,1.5,hydrophone closP
+MTeDNA_S24_1,MTeDNA_S24,yes,eDNA,0,01. Epipelagic (0-200m),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S24_2,MTeDNA_S24,yes,eDNA,0,01. Epipelagic (0-200m),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S24_3,MTeDNA_S24,yes,eDNA,0,01. Epipelagic (0-200m),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S26_1,MTeDNA_S26,yes,eDNA,0,01. Epipelagic (0-200m),11.38583333,142.5796667,11,23.15,142,34.78,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S26_2,MTeDNA_S26,yes,eDNA,0,01. Epipelagic (0-200m),11.38583333,142.5796667,11,23.15,142,34.78,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S26_3,MTeDNA_S26,yes,eDNA,0,01. Epipelagic (0-200m),11.38583333,142.5796667,11,23.15,142,34.78,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S30_1,MTeDNA_S30,yes,eDNA,0,01. Epipelagic (0-200m),25.2065,136.3611667,25,12.39,136,21.67,19,July,2020,1.5,hydrophone closP
+MTeDNA_S30_2,MTeDNA_S30,yes,eDNA,0,01. Epipelagic (0-200m),25.2065,136.3611667,25,12.39,136,21.67,19,July,2020,1.5,hydrophone closP
+MTeDNA_S30_3,MTeDNA_S30,yes,eDNA,0,01. Epipelagic (0-200m),25.2065,136.3611667,25,12.39,136,21.67,19,July,2020,1.5,hydrophone closP
+MTeDNA_S32_1,MTeDNA_S32,yes,eDNA,0,01. Epipelagic (0-200m),19.77916667,147.4513333,19,46.75,147,27.08,2,July,2020,1.5,hydrophone closP
+MTeDNA_S32_2,MTeDNA_S32,yes,eDNA,0,01. Epipelagic (0-200m),19.77916667,147.4513333,19,46.75,147,27.08,2,July,2020,1.5,hydrophone closP
+MTeDNA_S32_3,MTeDNA_S32,yes,eDNA,0,01. Epipelagic (0-200m),19.77916667,147.4513333,19,46.75,147,27.08,2,July,2020,1.5,hydrophone closP
+MTeDNA_S34_1,MTeDNA_S34,yes,eDNA,0,01. Epipelagic (0-200m),NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+MTeDNA_S34_2,MTeDNA_S34,yes,eDNA,0,01. Epipelagic (0-200m),NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+MTeDNA_S34_3,MTeDNA_S34,yes,eDNA,0,01. Epipelagic (0-200m),NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+MTeDNA_pool_02_1,MTeDNA_pool_02,yes,eDNA_pool,25,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_02_2,MTeDNA_pool_02,yes,eDNA_pool,25,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_02_3,MTeDNA_pool_02,yes,eDNA_pool,25,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_03_1,MTeDNA_pool_03,yes,eDNA_pool,50,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_03_2,MTeDNA_pool_03,yes,eDNA_pool,50,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_03_3,MTeDNA_pool_03,yes,eDNA_pool,50,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_01_1,MTeDNA_pool_01,yes,eDNA_pool,100,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_01_2,MTeDNA_pool_01,yes,eDNA_pool,100,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_pool_01_3,MTeDNA_pool_01,yes,eDNA_pool,100,01. Epipelagic (0-200m),11.37083333,142.4321667,11,22.25,142,25.93,21,June ,2020,0.25,NA
+MTeDNA_S12_1,MTeDNA_S12,yes,eDNA,5600,02. Benthos (5-6km),25.17466667,136.8145,25,10.48,136,48.87,18,July,2020,1.5,hydrophone closP
+MTeDNA_S12_2,MTeDNA_S12,yes,eDNA,5600,02. Benthos (5-6km),25.17466667,136.8145,25,10.48,136,48.87,18,July,2020,1.5,hydrophone closP
+MTeDNA_S12_3,MTeDNA_S12,yes,eDNA,5600,02. Benthos (5-6km),25.17466667,136.8145,25,10.48,136,48.87,18,July,2020,1.5,hydrophone closP
+MTeDNA_S33_1,MTeDNA_S33,yes,eDNA,6000,02. Benthos (5-6km),25.08433333,136.6025,25,5.06,136,36.15,17,July,2020,1.5,hydrophone closP
+MTeDNA_S33_2,MTeDNA_S33,yes,eDNA,6000,02. Benthos (5-6km),25.08433333,136.6025,25,5.06,136,36.15,17,July,2020,1.5,hydrophone closP
+MTeDNA_S33_3,MTeDNA_S33,yes,eDNA,6000,02. Benthos (5-6km),25.08433333,136.6025,25,5.06,136,36.15,17,July,2020,1.5,hydrophone closP
+MTeDNA_S14_1,MTeDNA_S14,yes,eDNA,6300,02. Benthos (5-6km),25.1435,136.3955,25,8.61,136,23.73,19,July,2020,1.5,hydrophone closP
+MTeDNA_S14_2,MTeDNA_S14,yes,eDNA,6300,02. Benthos (5-6km),25.1435,136.3955,25,8.61,136,23.73,19,July,2020,1.5,hydrophone closP
+MTeDNA_S14_3,MTeDNA_S14,yes,eDNA,6300,02. Benthos (5-6km),25.1435,136.3955,25,8.61,136,23.73,19,July,2020,1.5,hydrophone closP
+MTeDNA_S13_1,MTeDNA_S13,yes,eDNA,6375,02. Benthos (5-6km),24.9015,136.4696667,24,54.09,136,28.18,20,July,2020,1.5,hydrophone closP
+MTeDNA_S13_2,MTeDNA_S13,yes,eDNA,6375,02. Benthos (5-6km),24.9015,136.4696667,24,54.09,136,28.18,20,July,2020,1.5,hydrophone closP
+MTeDNA_S13_3,MTeDNA_S13,yes,eDNA,6375,02. Benthos (5-6km),24.9015,136.4696667,24,54.09,136,28.18,20,July,2020,1.5,hydrophone closP
+MTeDNA_S16_1,MTeDNA_S16,yes,eDNA,7300,03. Benthos (7-8km),19.17633333,147.5891667,19,10.58,147,35.35,2,July,2020,1.5,hydrophone closP
+MTeDNA_S16_2,MTeDNA_S16,yes,eDNA,7300,03. Benthos (7-8km),19.17633333,147.5891667,19,10.58,147,35.35,2,July,2020,1.5,hydrophone closP
+MTeDNA_S16_3,MTeDNA_S16,yes,eDNA,7300,03. Benthos (7-8km),19.17633333,147.5891667,19,10.58,147,35.35,2,July,2020,1.5,hydrophone closP
+MTeDNA_S20_1,MTeDNA_S20,yes,eDNA,7400,03. Benthos (7-8km),16.9245,147.9751667,16,55.47,147,58.51,4,July,2020,1.5,hydrophone closP
+MTeDNA_S20_2,MTeDNA_S20,yes,eDNA,7400,03. Benthos (7-8km),16.9245,147.9751667,16,55.47,147,58.51,4,July,2020,1.5,hydrophone closP
+MTeDNA_S20_3,MTeDNA_S20,yes,eDNA,7400,03. Benthos (7-8km),16.9245,147.9751667,16,55.47,147,58.51,4,July,2020,1.5,hydrophone closP
+MTeDNA_S23_1,MTeDNA_S23,yes,eDNA,7500,03. Benthos (7-8km),19.70683333,147.4978333,19,42.41,147,29.87,2,July,2020,1.5,hydrophone closP
+MTeDNA_S23_2,MTeDNA_S23,yes,eDNA,7500,03. Benthos (7-8km),19.70683333,147.4978333,19,42.41,147,29.87,2,July,2020,1.5,hydrophone closP
+MTeDNA_S23_3,MTeDNA_S23,yes,eDNA,7500,03. Benthos (7-8km),19.70683333,147.4978333,19,42.41,147,29.87,2,July,2020,1.5,hydrophone closP
+MTeDNA_S15_1,MTeDNA_S15,yes,eDNA,8000,03. Benthos (7-8km),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S15_2,MTeDNA_S15,yes,eDNA,8000,03. Benthos (7-8km),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S15_3,MTeDNA_S15,yes,eDNA,8000,03. Benthos (7-8km),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S15_2_1,MTeDNA_S15_2,yes,eDNA,8000,03. Benthos (7-8km),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S15_2_2,MTeDNA_S15_2,yes,eDNA,8000,03. Benthos (7-8km),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S15_2_3,MTeDNA_S15_2,yes,eDNA,8000,03. Benthos (7-8km),13.70683333,147.006,13,42.41,147,0.36,7,July,2020,1.5,hydrophone closP
+MTeDNA_S31_1,MTeDNA_S31,yes,eDNA,10800,04. Benthos (10km),11.36833333,142.575,11,22.1,142,34.5,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S31_2,MTeDNA_S31,yes,eDNA,10800,04. Benthos (10km),11.36833333,142.575,11,22.1,142,34.5,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S31_3,MTeDNA_S31,yes,eDNA,10800,04. Benthos (10km),11.36833333,142.575,11,22.1,142,34.5,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S31_2_1,MTeDNA_S31_2,yes,eDNA,10800,04. Benthos (10km),11.36833333,142.575,11,22.1,142,34.5,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S31_2_2,MTeDNA_S31_2,yes,eDNA,10800,04. Benthos (10km),11.36833333,142.575,11,22.1,142,34.5,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S31_2_3,MTeDNA_S31_2,yes,eDNA,10800,04. Benthos (10km),11.36833333,142.575,11,22.1,142,34.5,23,June ,2020,1.5,hydrophone closP
+MTeDNA_S25_1,MTeDNA_S25,yes,eDNA,10915,04. Benthos (10km),11.37216667,142.5848333,11,22.33,142,35.09,25,June ,2020,1.5,hydrophone closP
+MTeDNA_S25_2,MTeDNA_S25,yes,eDNA,10915,04. Benthos (10km),11.37216667,142.5848333,11,22.33,142,35.09,25,June ,2020,1.5,hydrophone closP
+MTeDNA_S25_3,MTeDNA_S25,yes,eDNA,10915,04. Benthos (10km),11.37216667,142.5848333,11,22.33,142,35.09,25,June ,2020,1.5,hydrophone closP
+MTeDNA_S25_2_1,MTeDNA_S25_2,yes,eDNA,10915,04. Benthos (10km),11.37216667,142.5848333,11,22.33,142,35.09,25,June ,2020,1.5,hydrophone closP
+MTeDNA_S25_2_2,MTeDNA_S25_2,yes,eDNA,10915,04. Benthos (10km),11.37216667,142.5848333,11,22.33,142,35.09,25,June ,2020,1.5,hydrophone closP
+MTeDNA_S25_2_3,MTeDNA_S25_2,yes,eDNA,10915,04. Benthos (10km),11.37216667,142.5848333,11,22.33,142,35.09,25,June ,2020,1.5,hydrophone closP
+EB_pool_1_1,EB_pool_1,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_1_2,EB_pool_1,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_1_3,EB_pool_1,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_2_1,EB_pool_2,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_2_2,EB_pool_2,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_2_3,EB_pool_2,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_3_1,EB_pool_3,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_3_2,EB_pool_3,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+EB_pool_3_3,EB_pool_3,yes,extraction_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NTC_1,NTC_1,no,no_template_control,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NTC_2,NTC_2,no,no_template_control,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NTC_3,NTC_3,no,no_template_control,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+tap_pool_1_1,tap_pool_1,yes,tap_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+tap_pool_1_2,tap_pool_1,yes,tap_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+tap_pool_1_3,tap_pool_1,yes,tap_blank,lab,05. Lab/Control,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
