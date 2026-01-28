@@ -9,7 +9,7 @@
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
   ape, data.table, ggpubr, ggrepel, ggtext, kableExtra, knitr, mgcv, pacman,
-  tidyverse, vegan, viridis, webshot2
+  tidyverse, vegan, viridis, webshot2, worrms, taxize
 )
 # This function will clear out the working environment at the end of the script #
 gommage = function(){
@@ -67,13 +67,51 @@ read.csv(
   header = TRUE, check.names = FALSE
 ) -> metadata
 # Append to reads table to create working dataframe #
+eDNA.reads %>% pivot_longer(
+  cols = 4:ncol(.),
+  names_to = "sample",
+  values_to = "RA"
+) %>%
+  left_join(., metadata, by = "sample") %>%
+  filter(RA > 0) -> eDNA.reads # Remove zeroes to reduce dataframe size #
 
 #### Read in BLAST results ####
 read.csv(
   "raw_data/blast.csv",
   header = TRUE, check.names = FALSE,
   row.names = 1
-) -> taxonomy
+) -> blast
+
+#### Use the 'worrms' and 'taxize' packages to query the BLAST results ####
+blast$species %>% unique() -> worms.match # Pull unique taxa #
+length(worms.match) # Number of unique taxa
+wm_records_names(name = worms.match[c(1:121)]) -> query.A
+wm_records_names(name = worms.match[c(122:242)]) -> query.B
+wm_records_names(name = worms.match[c(243:length(worms.match))]) -> query.C
+# The WoRMS query seems to break at around ~150 species, so I split this into thirds #
+# Depending on your filter parameters, you may need to adjust the length of these queries #
+
+# Use lapply and bind_rows() to turn these lists into dataframes to add together #
+bind_rows(lapply(query.A, as.data.frame)) -> query.A 
+bind_rows(lapply(query.B, as.data.frame)) -> query.B
+bind_rows(lapply(query.C, as.data.frame)) -> query.C 
+rbind(query.A, query.B, query.C) -> worms.match # Replace other object with the matches #
+remove(query.A)
+remove(query.B)
+remove(query.C)
+
+# Clean up the match dataframe #
+worms.match %>% select(c(kingdom:genus, scientificname)) %>% 
+  rename(species = scientificname) -> worms.match
+
+# Refine BLAST results #
+blast %>% filter(species %in% worms.match$species) %>%
+  left_join(., worms.match, by = "species", relationship = "many-to-many") %>%
+  filter(!is.na(ASV_ID)) -> blast
+remove(worms.match)
+
+#### Append taxonomy to reads ####
+eDNA.reads %>% right_join(., blast, by = "ASV_ID", relationship = "many-to-many") -> eDNA.reads
 
 #### End ####
 gommage()
