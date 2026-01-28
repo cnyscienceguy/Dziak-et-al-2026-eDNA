@@ -60,20 +60,66 @@ prefilter.totRA - sum(rowSums(eDNA.reads[,-c(1:3)])) # This is the difference
 prefilter.meanRA # Average per-sample read abundance prior to filtering
 mean(rowSums(eDNA.reads[,-c(1:3)])) # Post-filtering
 
-
-#### Read in metadata ####
-read.csv(
-  "raw_data/metadata.csv",
-  header = TRUE, check.names = FALSE
-) -> metadata
-# Append to reads table to create working dataframe #
+# Pivot longer #
 eDNA.reads %>% pivot_longer(
   cols = 4:ncol(.),
   names_to = "sample",
   values_to = "RA"
+) %>% filter(RA > 0) -> eDNA.reads # Remove zeroes to reduce dataframe size #
+
+#### Append metadata to eDNA reads ####
+read.csv(
+  "raw_data/metadata.csv",
+  header = TRUE, check.names = FALSE
+) %>% right_join(., eDNA.reads, by = "sample") -> eDNA.reads
+
+#### Calculate triplicates ####
+# Calculate adjusted read counts based on triplicates
+eDNA.reads %>% select(c(
+  ASV_ID, sample, RA, replicate, triplicate
+)) -> df # Working dataframe
+df %>% select(c(
+  ASV_ID, replicate, RA, triplicate
+)) %>% group_by(ASV_ID, replicate) %>%
+  filter(triplicate == "yes") %>%
+  select(c(ASV_ID, replicate, RA)) %>%
+  summarise(RA = sum(RA)/3) %>% # Average to triplicate
+  mutate(RA = floor(RA)) -> rep.df # Round down
+rep.samples = c("MTeDNA_S15", "MTeDNA_S15_2", "MTeDNA_S25",
+                "MTeDNA_S25_2", "MTeDNA_S31", "MTeDNA_S31_2")
+rep.df %>% filter(
+  replicate %in% rep.samples
 ) %>%
-  left_join(., metadata, by = "sample") %>%
-  filter(RA > 0) -> eDNA.reads # Remove zeroes to reduce dataframe size #
+  mutate(
+    dup = case_when(
+      replicate == "MTeDNA_S15" ~ "MTeDNA_S15",
+      replicate == "MTeDNA_S15_2" ~ "MTeDNA_S15",
+      replicate == "MTeDNA_S25" ~ "MTeDNA_S25",
+      replicate == "MTeDNA_S25_2" ~ "MTeDNA_S25",
+      replicate == "MTeDNA_S31" ~ "MTeDNA_S31",
+      replicate == "MTeDNA_S31_2" ~ "MTeDNA_S31"      
+    )
+  ) -> rep.df2
+grp = c("ASV_ID", "dup", "RA")
+rep.df2 <- rep.df2 %>%
+  group_by(across(all_of(grp))) %>%
+  summarise(RA = (sum(RA))/2) %>% # Treat duplicates #
+  rename(replicate = dup) %>%
+  mutate(RA = floor(RA))
+rep.df %>% filter(!(replicate %in% rep.samples)) %>%
+  rbind(., rep.df2) -> rep.df
+
+# Produce working dataframe #
+read.csv(
+  "raw_data/metadata.csv",
+  header = TRUE, check.names = FALSE) %>%
+  select(-c(sample, triplicate)) %>%
+  unique() %>%
+  right_join(., rep.df, by = "replicate", relationship = "many-to-many") %>%
+  rename(sample = replicate) -> df
+remove(rep.df)
+remove(rep.df2)
+remove(eDNA.reads)
 
 #### Read in BLAST results ####
 read.csv(
@@ -111,8 +157,106 @@ blast %>% filter(species %in% worms.match$species) %>%
 remove(worms.match)
 
 #### Append taxonomy to reads ####
-eDNA.reads %>% right_join(., blast, by = "ASV_ID", relationship = "many-to-many") -> eDNA.reads
+df %>% right_join(., blast, by = "ASV_ID", relationship = "many-to-many") -> df
+
+#### Filter out bad taxonomy reads ####
+df %>% filter(bit_score > 250 & percent_identity > 95.0) %>%
+       filter(kingdom != "Fungi") -> df
+
+#### Create community dataframe, normalize ####
+df %>% select(c(sample, species, RA)) %>%
+  pivot_wider(
+    names_from = species,
+    values_from = RA,
+    values_fn = sum
+  ) %>% mutate_at(c(2:ncol(.)), ~replace_na(., 0)) %>%
+  filter(!is.na(sample)) %>% column_to_rownames(var = "sample") %>%
+  decostand(., method = "log") %>% decostand(., method = "total") -> comm
+# Used "decostand" from the vegan package to apply community transformations
+
+#### Make metadata table for NMDS / BCD calcs ####
+read.csv(
+  "raw_data/metadata.csv",
+  header = TRUE, check.names = FALSE) %>%
+  select(c(
+  replicate, type:ncol(.))) %>% unique() %>%
+  rename("sample" = "replicate") %>%
+  filter(sample %in% rownames(comm)) -> nmds.meta
+
+#### PERMANOVA ####
+set.seed(12031996)
+prop.adonis <- adonis2(comm ~ depth_cat + month,
+                       data = nmds.meta,
+                       permutations = 999,
+                       method = "bray",
+                       by = "terms")
+prop.adonis # Model output
+
+#### Ordination ####
+set.seed(12031996)
+comm.mds <- metaMDS(comm, dist = "bray", k = 5, trymax = 100)
+comm.mds$stress # Low stress is good!
+
+#### NMDS plot ####
+data_scores <- as.data.frame(scores(comm.mds, "sites"))
+sp_scores <- as.data.frame(scores(comm.mds, "species"))
+sp_scores$species <- rownames(sp_scores)
+scrs <- scores(comm.mds, display = "sites") %>%
+  as.data.frame()
+scrs$sample <- rownames(scrs)
+scrs <- scrs %>%
+  as.data.frame() %>%
+  left_join(.,
+            nmds.meta,
+            by = "sample")
+
+cent <- aggregate(cbind(NMDS1, NMDS2) ~ depth_cat, data = scrs, FUN = mean)
+segs <- merge(scrs, setNames(cent, c("depth_cat","oNMDS1","oNMDS2")),
+              by = "depth_cat", sort = FALSE)
+ggplot(scrs, aes(x = NMDS1, y = NMDS2, color = depth_cat)) +
+  geom_segment(data = segs, mapping = aes(xend = oNMDS1, yend = oNMDS2), alpha = 0.3) +
+  geom_point(data = cent, size = 4) + 
+  geom_point(size = 2, alpha = 0.75) + coord_fixed() +
+  scale_color_viridis(discrete = TRUE, option = "A", direction = -1) +
+  theme(
+    panel.background = element_rect(fill = "#82B1DB"),
+    axis.line = element_line(colour = "black")) +
+  theme(legend.position = "bottom") +
+  labs(title = "Challenger Deep eDNA Ordination",
+       subtitle = "Bray-Curtis Dissimilarity on Log-Transformed Read Abundance",
+       xlab = "NMDS 1", ylab = "NMDS 2",
+       color = "Depth Categories")
+
+#### Barplot figure, facet wrap ####
+df %>% 
+  group_by(depth_cat, phylum) %>%
+  filter(!is.na(depth_cat)) %>%
+  summarise(RA = sum((log1p(RA)))) %>%
+  arrange(desc(RA)) %>%
+  ggplot(aes(x = as.factor(phylum), y = RA, fill = phylum)) +
+  geom_bar(stat = "identity", colour = "black", width = 0.5) +
+  scale_fill_viridis(discrete = TRUE, option = "turbo", direction = -1) +
+  theme(
+    panel.background = element_rect(fill = "#D8EDE6"),
+    axis.line = element_line(colour = "black")
+  ) +
+  facet_wrap(vars(depth_cat)) +
+  coord_flip() + scale_x_discrete(limits = rev) +
+  labs(
+    title = "Challenger Deep eDNA Diversity by Depth",
+    subtitle = "Phyla by depth category",
+    y = "Log-Transformed Read Abundance", x = "", fill = "eDNA-Observed Phyla") +
+  theme(legend.position = "none")
+ggsave(
+  "figures/eDNA_by_depth.png",
+  units = "px",
+  dpi = 300,
+  width = 3000,
+  height = 2000,
+  bg = "white"
+)
 
 #### End ####
 gommage()
+dev.off()
 # Get out of this canvas! #
