@@ -150,18 +150,66 @@ remove(query.C)
 worms.match %>% select(c(kingdom:genus, scientificname)) %>% 
   rename(species = scientificname) -> worms.match
 
-# Refine BLAST results #
-blast %>% filter(species %in% worms.match$species) %>%
-  left_join(., worms.match, by = "species", relationship = "many-to-many") %>%
-  filter(!is.na(ASV_ID)) -> blast
+# What didn't pass this query? #
+blast %>% filter(!species %in% worms.match$species) %>%
+  select(species) %>% unique() -> no.worms.match
+
+#### Use taxize to fill in the gaps ####
+classification(db = "ncbi", c(unique(no.worms.match$species))) -> NCBI_match # Queries NCBI taxonomy database #
+# ^ this component may require interactive input by the user #
+# I have a special key from my ORCID to query the NCBI taxonomy db; you may need this too #
+rbind(NCBI_match) %>% lapply(., na.omit) -> NCBI_match
+NCBI_match %>% bind_cols(lapply(., as.data.frame)) %>% # Pull out dataframes from list #
+  select(c(name, rank, query)) %>%
+  filter(rank == "kingdom" | rank == "phylum" | rank == "class" | rank == "order" | rank == "family" |
+           rank == "genus" | rank == "species") %>%
+  pivot_wider(
+    names_from = rank,
+    values_from = name
+  ) %>%
+  rename("sci_name" = "query") %>%
+  select(-species) -> NCBI_match
+NCBI_match %>% rename("species" = "sci_name") -> NCBI_match
+head(NCBI_match)
+
+#### Combine results ####
+rbind(NCBI_match, worms.match) -> query.match
 remove(worms.match)
+remove(NCBI_match)
+
+#### Refine BLAST results, reconcile taxonomic squiffiness ####
+blast %>% filter(species %in% query.match$species) %>%
+  left_join(., query.match, by = "species", relationship = "many-to-many") %>%
+  filter(!is.na(ASV_ID)) %>% unique() -> blast
+
+# Should be equal values #
+length(unique(blast$ASV_ID)) == nrow(blast)
+# If so, good to go — mostly #
+
+# Need to edit some lineage data #
+blast %>% mutate(kingdom = case_when(
+  kingdom == "Metazoa" ~ "Animalia", # To match WoRMS
+  kingdom == "Viridiplantae" ~ "Plantae",
+  TRUE ~ kingdom
+  )) %>% mutate(class = case_when(
+  class == "Hexanauplia" ~ "Copepoda", # Copepods are problem children, taxonomically
+  TRUE ~ class
+  )) -> blast
+# Can change or add more as needed with more conditional statements #
+# I have a feeling Protozoa is a problem clade #
 
 #### Append taxonomy to reads ####
 df %>% right_join(., blast, by = "ASV_ID", relationship = "many-to-many") -> df
 
-#### Filter out bad taxonomy reads ####
+#### Filter out bad taxonomy reads and surface contaminants ####
 df %>% filter(bit_score > 250 & percent_identity > 95.0) %>%
-       filter(kingdom != "Fungi") -> df
+       filter(kingdom != "Fungi" &
+              class != "Insecta" &
+              class != "Arachnida" &
+              class != "Aves" &
+              order != "Carnivora" &
+              order != "Primates" &
+              order != "Artiodactyla") -> df
 
 #### Create community dataframe, normalize ####
 df %>% select(c(sample, species, RA)) %>%
@@ -171,7 +219,7 @@ df %>% select(c(sample, species, RA)) %>%
     values_fn = sum
   ) %>% mutate_at(c(2:ncol(.)), ~replace_na(., 0)) %>%
   filter(!is.na(sample)) %>% column_to_rownames(var = "sample") %>%
-  decostand(., method = "log") %>% decostand(., method = "total") -> comm
+  decostand(., method = "log") -> comm #%>% decostand(., method = "total") -> comm
 # Used "decostand" from the vegan package to apply community transformations
 
 #### Make metadata table for NMDS / BCD calcs ####
